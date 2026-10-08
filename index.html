@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel & Pulse</title>
+   <meta name="google-site-verification" content="UYNfjGOZN__zIhJ9iPzzrb8Om-5fLastsBZJbHskS6k" />
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background-color: #f8eee7;
+            color: #4a3b32;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 6%;
+            background-color: #fdf6f0;
+            border-bottom: 1px solid #ebd5cb;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #d4838b;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            color: #f2a6af;
+            font-size: 22px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a3b32;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #d4838b;
+        }
+
+        .theme-toggle-btn {
+            background: #f2a6af;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 8%;
+        }
+
+        .hero-text h1 {
+            font-size: 46px;
+            color: #4a3b32;
+            margin-bottom: 12px;
+        }
+
+        .hero-text h2 {
+            font-size: 18px;
+            color: #d4838b;
+            font-weight: normal;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background-color: #f2a6af;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .hero-img img {
+            width: 360px;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        /* ARTISTAS DESTACADOS (CÍRCULOS) */
+        .section-artistas-destacados {
+            padding: 40px 8%;
+            text-align: center;
+            background: #fdf6f0;
+            border-top: 1px solid #ebd5cb;
+            border-bottom: 1px solid #ebd5cb;
+        }
+
+        .section-artistas-destacados h3 {
+            font-size: 18px;
+            color: #4a3b32;
+            margin-bottom: 25px;
+        }
+
+        .circulos-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .circulo-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .circulo-item:hover {
+            transform: scale(1.08);
+        }
+
+        .circulo-img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+            border: 2px solid #f2a6af;
+        }
+
+        .circulo-item p {
+            font-size: 13px;
+            color: #4a3b32;
+            font-weight: 500;
+        }
+
+        /* DETALLE INTERACTIVO DE ARTISTA */
+        .detalle-seccion {
+            padding: 60px 8%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tarjeta-detalle {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 35px;
+            width: 100%;
+            max-width: 850px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            border: 1px solid #ebd5cb;
+        }
+
+        .volver-link {
+            font-size: 13px;
+            color: #d4838b;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .contenido-ficha {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .contenido-ficha img {
+            width: 280px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .ficha-info h2 {
+            font-size: 26px;
+            color: #4a3b32;
+            margin-bottom: 12px;
+        }
+
+        .ficha-info p {
+            font-size: 14px;
+            color: #77655b;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .navegacion-tarjeta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #f0e6e0;
+        }
+
+        .btn-nav {
+            background: #f2a6af;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-nav:hover {
+            opacity: 0.9;
+        }
+
+        .iconos-accion {
+            display: flex;
+            gap: 15px;
+            font-size: 16px;
+            color: #77655b;
+        }
+
+        /* GALERÍA */
+        .galeria-seccion {
+            padding: 60px 8%;
+            background: #fdf6f0;
+        }
+
+        .titulo-centrado {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .titulo-centrado h2 {
+            font-size: 32px;
+            color: #4a3b32;
+            margin-bottom: 8px;
+        }
+
+        .filtros-galeria {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .filtro-btn {
+            background: #f8eee7;
+            border: 1px solid #ebd5cb;
+            padding: 6px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #4a3b32;
+        }
+
+        .filtro-btn.active {
+            background: #f2a6af;
+            color: white;
+            border-color: #f2a6af;
+        }
+
+        .grid-obras {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .obra-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border: 1px solid #ebd5cb;
+        }
+
+        .obra-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .obra-card-info {
+            padding: 15px;
+        }
+
+        .obra-card-info h4 {
+            font-size: 15px;
+            color: #d4838b;
+            margin-bottom: 5px;
+        }
+
+        .obra-card-info p {
+            font-size: 13px;
+            color: #77655b;
+        }
+
+        /* SOBRE NOSOTROS */
+        .sobre-seccion {
+            padding: 60px 8%;
+            background: #f8eee7;
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .sobre-columna {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #ebd5cb;
+        }
+
+        .sobre-columna h4 {
+            color: #d4838b;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .sobre-columna p, .sobre-columna ul {
+            font-size: 13px;
+            color: #77655b;
+            line-height: 1.5;
+        }
+
+        .sobre-columna ul {
+            padding-left: 20px;
+        }
+
+        /* CONTACTO */
+        .contacto-seccion {
+            padding: 60px 8%;
+            background: #fdf6f0;
+            border-top: 1px solid #ebd5cb;
+        }
+
+        .contacto-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #ebd5cb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #4a3b32;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ebd5cb;
+            border-radius: 8px;
+            font-size: 13px;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn-enviar {
+            background-color: #f2a6af;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #fdf6f0;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ebd5cb;
+            font-size: 13px;
+            color: #77655b;
+        }
+
+        .footer-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* ================= ESTILOS DE TEMAS DINÁMICOS ================= */
+        body.tema-manana {
+ background-color: #fff9ed;
+ color: #49392d;
+ }
+ body.tema-manana header, body.tema-manana footer, body.tema-manana .section-artistas-destacados, body.tema-manana .galeria-seccion, body.tema-manana .contacto-seccion {
+ background-color: #fff1cf;
+ }
+ body.tema-manana .logo-area, body.tema-manana .ficha-info h2, body.tema-manana .obra-card-info h4, body.tema-manana .sobre-columna h4 {
+ color: #e09532;
+ }
+ body.tema-manana .theme-toggle-btn, body.tema-manana .btn-main, body.tema-manana .filtro-btn.active, body.tema-manana .btn-enviar, body.tema-manana .btn-nav {
+ background-color: #e09532;
+ border-color: #e09532;
+ }
+
+ body.tema-dia {
+ background-color: #f8eee7;
+ color: #4a3b32;
+ }
+ body.tema-dia header, body.tema-dia footer, body.tema-dia .section-artistas-destacados, body.tema-dia .galeria-seccion, body.tema-dia .contacto-seccion {
+ background-color: #fdf6f0;
+ }
+ body.tema-dia .logo-area, body.tema-dia .ficha-info h2, body.tema-dia .obra-card-info h4, body.tema-dia .sobre-columna h4 {
+ color: #d4838b;
+ }
+ body.tema-dia .theme-toggle-btn, body.tema-dia .btn-main, body.tema-dia .filtro-btn.active, body.tema-dia .btn-enviar, body.tema-dia .btn-nav {
+ background-color: #f2a6af;
+ border-color: #f2a6af;
+ }
+
+ body.tema-atardecer {
+ background-color: #ffe6d6;
+ color: #482d2b;
+ }
+ body.tema-atardecer header, body.tema-atardecer footer, body.tema-atardecer .section-artistas-destacados, body.tema-atardecer .galeria-seccion, body.tema-atardecer .contacto-seccion {
+ background-color: #f5d0ba;
+ }
+ body.tema-atardecer .logo-area, body.tema-atardecer .ficha-info h2, body.tema-atardecer .obra-card-info h4, body.tema-atardecer .sobre-columna h4 {
+ color: #c65b3e;
+ }
+ body.tema-atardecer .theme-toggle-btn, body.tema-atardecer .btn-main, body.tema-atardecer .filtro-btn.active, body.tema-atardecer .btn-enviar, body.tema-atardecer .btn-nav {
+ background-color: #c65b3e;
+ border-color: #c65b3e;
+ }
+
+ body.tema-noche {
+ background-color: #101827;
+ color: #e8edf5;
+ }
+ body.tema-noche header, body.tema-noche footer, body.tema-noche .section-artistas-destacados, body.tema-noche .galeria-seccion, body.tema-noche .contacto-seccion, body.tema-noche .tarjeta-detalle, body.tema-noche .obra-card, body.tema-noche .sobre-columna, body.tema-noche .contacto-card {
+ background-color: #172337;
+ color: #e8edf5;
+ border-color: #263853;
+ }
+ body.tema-noche nav a, body.tema-noche .ficha-info p, body.tema-noche .obra-card-info p, body.tema-noche .sobre-columna p, body.tema-noche .circulo-item p, body.tema-noche .sobre-columna ul, body.tema-noche .form-group label {
+ color: #cbd5e1;
+ }
+ body.tema-noche .logo-area, body.tema-noche .ficha-info h2, body.tema-noche .obra-card-info h4, body.tema-noche .sobre-columna h4 {
+ color: #8b78d5;
+ }
+ body.tema-noche .theme-toggle-btn, body.tema-noche .btn-main, body.tema-noche .filtro-btn.active, body.tema-noche .btn-enviar, body.tema-noche .btn-nav {
+ background-color: #8b78d5;
+ border-color: #8b78d5;
+ }
+
+        @media (max-width: 800px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+            .contenido-ficha {
+                flex-direction: column;
+            }
+            .grid-obras, .sobre-grid {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="tema-dia">
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">&#10084;</span> PIXEL & PULSE
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#artistas">Artistas</a>
+            <a href="#galeria">Galería</a>
+            <a href="#sobre">Sobre nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <!-- El botón ahora está fuera del menú para que no se oculte en celulares -->
+        <button class="theme-toggle-btn" onclick="cambiarTemaManual()">Cambiar Tema</button>
+        <button class="theme-toggle-btn" onclick="cambiarClaroOscuro()">Claro / Oscuro</button>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="inicio">
+        <div class="hero-text">
+            <h1>Pixel & Pulse</h1>
+            <h2>Arte que conecta,<br>colores que laten.</h2>
+           <a href="#galeria" class="btn-main">Explorar galería &rarr;</a>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800&q=80" alt="Ilustración artística de perfil con acuarela">
+        </div>
+    </section>
+
+    <!-- ARTISTAS DESTACADOS -->
+    <section class="section-artistas-destacados" id="artistas">
+        <h3>Artistas destacados</h3>
+        <div class="circulos-grid">
+            <div class="circulo-item" onclick="mostrarArtista(0)">
+                <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=300&q=80" class="circulo-img" alt="Fernando Llort">
+                <p>Fernando Llort</p>
+            </div>
+            <div class="circulo-item" onclick="mostrarArtista(1)">
+                <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?auto=format&fit=crop&w=300&q=80" class="circulo-img" alt="Julia Díaz">
+                <p>Julia Díaz</p>
+            </div>
+            <div class="circulo-item" onclick="mostrarArtista(2)">
+                <img src="https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=300&q=80" class="circulo-img" alt="Camilo Minero">
+                <p>Camilo Minero</p>
+            </div>
+            <div class="circulo-item" onclick="mostrarArtista(3)">
+                <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=300&q=80" class="circulo-img" alt="Noé Canjura">
+                <p>Noé Canjura</p>
+            </div>
+            <div class="circulo-item" onclick="mostrarArtista(4)">
+                <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=300&q=80" class="circulo-img" alt="Carlos Cañas">
+                <p>Carlos Cañas</p>
+            </div>
+             <div class="circulo-item" onclick="mostrarArtista(5)">
+        <img src="https://www.fearlessphotographers.com/images/photogs/luis-paredes-gallery-8048.jpg" class="circulo-img" alt="Luis Paredes">
+      <p>Luis Paredes</p>
+        </div>
+        </div>
+    </section>
+
+    <!-- TARJETA DETALLE DE ARTISTA -->
+    <section class="detalle-seccion">
+        <div class="tarjeta-detalle">
+            <a href="#artistas" class="volver-link">&larr; Volver a artistas</a>
+            <div class="contenido-ficha">
+                <img id="img-artista" src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=600&q=80" alt="Artista">
+                <div class="ficha-info">
+                    <h2 id="nombre-artista">Fernando Llort</h2>
+                    <p id="desc-artista"><strong>Especialidad:</strong> Pintura y diseño.</p>
+                    <p id="estilo-artista"><strong>Estilo:</strong> Arte popular salvadoreño.</p>
+                    <p id="detalle-artista">Fernando Llort fue un reconocido artista salvadoreño cuya obra se caracteriza por el uso de colores vivos, formas sencillas y composiciones llenas de simbolismo, reflejando la identidad cultural y tradiciones.</p>
+                </div>
+            </div>
+            <div class="navegacion-tarjeta">
+                <button class="btn-nav" onclick="artistaAnterior()">&larr; Anterior</button>
+                <div class="iconos-accion">
+                    <span>&#9825;</span>
+                    <span>&#128279;</span>
+                </div>
+                <button class="btn-nav" onclick="artistaSiguiente()">Siguiente &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="galeria-seccion" id="galeria">
+        <div class="titulo-centrado">
+            <h2>Galería</h2>
+            <p>Explora diferentes estilos artísticos</p>
+        </div>
+
+        <div class="filtros-galeria">
+            <button class="filtro-btn active" onclick="filtrarObras('todas', this)">Todas</button>
+            <button class="filtro-btn" onclick="filtrarObras('pintura', this)">Pintura</button>
+            <button class="filtro-btn" onclick="filtrarObras('grabado', this)">Grabado</button>
+            <button class="filtro-btn" onclick="filtrarObras('fotografia', this)">Fotografía</button>
+        </div>
+
+        <div class="grid-obras">
+            <div class="obra-card pintura">
+                <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=500&q=80" alt="Obra">
+                <div class="obra-card-info">
+                    <h4>Fernando Llort</h4>
+                    <p>Pintura inspirada en la cultura salvadoreña.</p>
+                </div>
+            </div>
+            <div class="obra-card pintura">
+                <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?auto=format&fit=crop&w=500&q=80" alt="Obra">
+                <div class="obra-card-info">
+                    <h4>Julia Díaz</h4>
+                    <p>Expresión de la pintura tradicional.</p>
+                </div>
+            </div>
+            <div class="obra-card grabado">
+                <img src="https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=500&q=80" alt="Obra">
+                <div class="obra-card-info">
+            <h4>Camilo Minero</h4>
+            <p>Ejemplo de expresión mediante grabado.</p>
+        </div>
+    </div>
+    <div class="obra-card pintura">
+        <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=500&q=80" alt="Obra">
+        <div class="obra-card-info">
+            <h4>Noé Canjura</h4>
+            <p>Representación de la pintura moderna.</p>
+        </div>
+    </div>
+    <div class="obra-card pintura">
+        <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=500&q=80" alt="Obra">
+        <div class="obra-card-info">
+            <h4>Carlos Cañas</h4>
+            <p>Pintura y expresión artística abstracta.</p>
+        </div>
+    </div>
+    <div class="obra-card fotografia">
+        <img src="https://www.fearlessphotographers.com/images/photogs/luis-paredes-gallery-8048.jpg" alt="Obra">
+        <div class="obra-card-info">
+            <h4>Luis Paredes</h4>
+            <p>Fotografía de bodas y retratos exteriores.</p>
+        </div>
+    </div>
+    <div class="obra-card fotografia">
+        <img src="https://www.fearlessphotographers.com/images/photogs/luis-paredes-gallery-6775.jpg" alt="Obra">
+        <div class="obra-card-info">
+            <h4>Luis Paredes</h4>
+            <p>Fotografía de bodas y retratos exteriores.</p>
+        </div>
+</div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section class="sobre-seccion" id="sobre">
+    <div class="titulo-centrado">
+        <h2>Sobre Pixel & Pulse</h2>
+    </div>
+    <div class="sobre-grid">
+        <div class="sobre-columna">
+            <h4>Nuestra misión</h4>
+            <p>Conectar a artistas con el público a través de una plataforma digital, promoviendo el arte y la cultura.</p>
+        </div>
+        <div class="sobre-columna">
+            <h4>Nuestra visión</h4>
+            <p>Ser el espacio digital más inspirador y accesible para creadores y amantes del arte.</p>
+        </div>
+        <div class="sobre-columna">
+            <h4>Nuestros objetivos</h4>
+            <ul>
+                <li>Difundir y visibilizar el talento artístico.</li>
+                <li>Facilitar la exposición virtual de obras.</li>
+                <li>Crear una experiencia interactiva única.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto-seccion" id="contacto">
+    <div class="titulo-centrado">
+        <h2>Contacto</h2>
+        <p>¿Tienes dudas o deseas adquirir una obra? Escríbenos.</p>
+    </div>
+    <div class="contacto-card">
+        <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.');">
+            <div class="form-group">
+                <label>Tu nombre:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Correo electrónico:</label>
+                <input type="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Mensaje:</label>
+                <textarea class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn-enviar">Enviar mensaje</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; Pixel & Pulse</p>
+    <div class="footer-icons">
+        <span>&#128247;</span>
+        <span>&#127760;</span>
+        <span>&#9993;</span>
+    </div>
+</footer>
+
+<!-- SCRIPT DE INTERACTIVIDAD -->
+<script>
+    const artistas = [
+        {
+            nombre: "Fernando Llort",
+            especialidad: "Pintura y diseño",
+            estilo: "Arte popular salvadoreño",
+            descripcion: "Fernando Llort fue un reconocido artista cuya obra se caracteriza por el uso de colores vivos, formas sencillas y composiciones llenas de simbolismo, reflejando la identidad cultural y tradiciones.",
+            imagen: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            nombre: "Julia Díaz",
+            especialidad: "Pintura y promoción cultural",
+            estilo: "Pintura y artes visuales",
+            descripcion: "Pintora y promotora de las artes visuales, fundadora de galerías y figura clave en el desarrollo del arte pictórico y la difusión cultural.",
+            imagen: "https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            nombre: "Camilo Minero",
+            especialidad: "Pintura y grabado",
+            estilo: "Grabado y muralismo",
+            descripcion: "Artista reconocido por su profundo trabajo enfocado en la realidad social, la pintura y el grabado con un estilo expresivo y auténtico.",
+            imagen: "https://images.unsplash.com/photo-1577083288073-40892c0860a4?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            nombre: "Noé Canjura",
+            especialidad: "Pintura moderna",
+            estilo: "Pintura moderna",
+            descripcion: "Pintor perteneciente a una importante generación artística que llevó su talento a escenarios internacionales sin perder la esencia de sus raíces.",
+            imagen: "https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            nombre: "Carlos Cañas",
+            especialidad: "Pintura y arte mural",
+            estilo: "Premio Nacional de Cultura",
+            descripcion: "Importante pintor y uno de los máximos exponentes del arte abstracto y moderno, reconocido por su gran trayectoria y aportes culturales.",
+            imagen: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            nombre: "Luis Paredes",
+ especialidad: "Fotografía profesional",
+ estilo: "Fotografía de bodas y retratos exteriores",
+ descripcion: "Capturando momentos mágicos e inolvidables con iluminación nocturna y escenarios arquitectónicos únicos bajo las estrellas.",
+ imagen: "https://www.fearlessphotographers.com/images/photogs/luis-paredes-gallery-8048.jpg"
+}
+    ];
+
+    let indiceActual = 0;
+
+    function mostrarArtista(index) {
+        indiceActual = index;
+        const a = artistas[indiceActual];
+        document.getElementById("nombre-artista").innerText = a.nombre;
+        document.getElementById("desc-artista").innerHTML = `<strong>Especialidad:</strong> ${a.especialidad}.`;
+        document.getElementById("estilo-artista").innerHTML = `<strong>Estilo:</strong> ${a.estilo}.`;
+        document.getElementById("detalle-artista").innerText = a.descripcion;
+        document.getElementById("img-artista").src = a.imagen;
+    }
+
+    function artistaAnterior() {
+        indiceActual = (indiceActual - 1 + artistas.length) % artistas.length;
+        mostrarArtista(indiceActual);
+    }
+
+    function artistaSiguiente() {
+        indiceActual = (indiceActual + 1) % artistas.length;
+        mostrarArtista(indiceActual);
+    }
+
+    function filtrarObras(categoria, boton) {
+        const obras = document.querySelectorAll(".obra-card");
+        const botones = document.querySelectorAll(".filtro-btn");
+
+        botones.forEach(b => b.classList.remove("active"));
+        boton.classList.add("active");
+
+        obras.forEach(obra => {
+            if (categoria === 'todas' || obra.classList.contains(categoria)) {
+                obra.style.display = "block";
+            } else {
+                obra.style.display = "none";
+            }
+        });
+    }
+
+    // 1. Detección automática según la hora
+    function aplicarTemaAutomatico() {
+        const hora = new Date().getHours();
+        const body = document.body;
+        body.className = "";
+        if (hora >= 5 && hora < 12) {
+            body.classList.add("tema-manana");
+        } else if (hora >= 12 && hora < 14) {
+            body.classList.add("tema-dia");
+        } else if (hora >= 14 && hora < 20) {
+            body.classList.add("tema-atardecer");
+        } else {
+            body.classList.add("tema-noche");
+        }
+    }
+    
+
+    // 2. Tu botón original "Cambiar Tema"
+    function cambiarTemaManual() {
+        const body = document.body;
+        if (body.classList.contains("tema-dia") || body.classList.contains("tema-manana")) {
+            body.classList.remove("tema-manana", "tema-dia");
+            body.classList.add("tema-atardecer");
+        } else if (body.classList.contains("tema-atardecer")) {
+            body.classList.remove("tema-atardecer");
+            body.classList.add("tema-noche");
+        } else {
+            body.classList.remove("tema-noche");
+            body.classList.add("tema-dia");
+        }
+    }
+
+    // 3. El nuevo botón extra: Claro / Oscuro
+    function cambiarClaroOscuro() {
+        const body = document.body;
+        if (body.classList.contains("tema-noche") || body.classList.contains("tema-atardecer")) {
+            body.className = "tema-dia";
+        } else {
+            body.className = "tema-noche";
+        }
+    }
+
+    // Ejecutar al iniciar la página y revisar la hora automaticamente cada minuto
+    aplicarTemaAutomatico();
+    setInterval(aplicarTemaAutomatico, 60000);
+
+</script>
+</body>
+</html>
